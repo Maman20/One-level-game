@@ -14,7 +14,7 @@ Creating a one level but complex user friendly game using java.
 
 GAME – LOGIC (ONLY HAS A FEW COMMON INSTANCE VARIABLES // E.G CLICKING DETECTION AND KEYBOARD DETECTION.)  
 
-Common(instance vars/functions etc..) – esc, enter, mouse click, keyboard detection 
+Common(instance vars/functions etc..) – esc, enter, mouse click, keyboard detection, Title and bg
 
 
 SECTION 2: MAJOR SUBCLASSES (4)
