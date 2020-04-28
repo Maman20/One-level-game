@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 import java.util.Iterator;
 
 import com.Bean.Beans.Window.Handler;
-
+//our basic key input 
 public class KeyInput extends KeyAdapter { //keyadaptor receves key events
 		Handler handler;
 		
