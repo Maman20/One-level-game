@@ -3,9 +3,9 @@ package com.Bean.Beans.Window;
 import com.Bean.Beans.Framework.GameObject;
 
 public class Camera {  //follows player
-	protected float x,y;
+	protected int x,y;  //we use int here to prevent shaky cameras
 
-	public Camera(float x, float y) {
+	public Camera(int x, int y) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -17,17 +17,19 @@ public class Camera {  //follows player
 		public float getY() {
 			return y;
 		}
-		public void setX(float x) {
+		public void setX(int x) {
 			this.x = x;
 		}
-		public void setY(float y) {
+		public void setY(int y) {
 			this.y = y;
 		}
 
 		public void tick(GameObject player) {  //we watn camera to snap onto player
 			// TODO Auto-generated method stub
 			//tweaning algorithm
-			x= -player.getX() + ((mainGame.width)/2);
-			
+		float	xx= (int) (-player.getX() + ((mainGame.width)/2));
+		float yy = (int) (-player.getY() + ((mainGame.height)/2));
+		     x+= (xx - x) * (0.05);
+		     y+= (yy-y) * (0.05);
 		}
 }

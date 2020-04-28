@@ -27,6 +27,7 @@ public class KeyInput extends KeyAdapter { //keyadaptor receves key events
 					tempObject.setVelocityY(-10);
 					}
 					}
+				
 			} 
 			if (key == KeyEvent.VK_ESCAPE) { //instead of using ascii for escape we use .vk escape which is enum for ascii code number itself 
 				System.exit(23);

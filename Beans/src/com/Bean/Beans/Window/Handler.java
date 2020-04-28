@@ -41,17 +41,17 @@ public class Handler { //class to hold all our game objects to a lsit , updates 
 		//our level
 		public void createLevel () {
 			//Random g = new Random();
-			for(int yy = 0; yy < mainGame.width+32; yy += 32) {
-					addObject(new Block(0, yy, ObjectId.Block));
-				}
-			for (int xx = 0; xx <mainGame.width + 32; xx+=32) {
-				addObject(new Block(xx, mainGame.height-32, ObjectId.Block)); //must create enum contant of test before using it in handler class
-		    }
-			for (int xx = 0; xx <600; xx+=32) {
-				addObject(new Block(xx, 400, ObjectId.Block)); //must create enum contant of test before using it in handler class
-		    }
-			
-				
+//			for(int yy = 0; yy < mainGame.width+32; yy += 32) {
+//					addObject(new Block(0, yy, ObjectId.Block));
+//				}
+//			for (int xx = 0; xx <mainGame.width + 32; xx+=32) {
+//				addObject(new Block(xx, mainGame.height-32, ObjectId.Block)); //must create enum contant of test before using it in handler class
+//		    }
+//			for (int xx = 0; xx <600; xx+=32) {
+//				addObject(new Block(xx, 400, ObjectId.Block)); //must create enum contant of test before using it in handler class
+//		    }
+//			
+//				
 //				for(int zz = 0; zz < mainGame.height+32; zz += 32) {
 //					addObject(new Block(mainGame.height-609, zz, ObjectId.Block)); //must create enum contant of test before using it in handler class
 //				}		

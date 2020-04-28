@@ -10,6 +10,7 @@ import java.util.Random;
 
 import com.Bean.Beans.Framework.KeyInput;
 import com.Bean.Beans.Framework.ObjectId;
+import com.Bean.Beans.Framework.Texture;
 import com.Bean.Beans.Objects.Block;
 import com.Bean.Beans.Objects.Player;
 
@@ -42,23 +43,26 @@ public class mainGame extends Canvas implements Runnable { /**
 	Handler handler;
 	Camera cam;
 	Random rand = new Random();
+	static Texture tex;
 	private void init() { //initialises everything - gets called b4 we start our loop
 		width = getWidth();
 		height = getHeight();
-	
+	    tex = new Texture();
 		BufferedImageLoader loader = new BufferedImageLoader();
 		
 		level = loader.loadImage("/level1.png");
 		handler = new Handler();
 		cam = new Camera(0, 0);
+		
+		loadImageLevel(level);
 //		for (int i = 0; i <50; i++) { //no need for test1,2,3 can have 50 objects using random places
 //				handler.addObject(new Block(rand.nextInt(800), rand.nextInt(600), ObjectId.Block)); //must create enum contant of test before using it in handler class
 //				//USING RANDOM POINT BETWEEN OUR WIDTH AND HEIGHT	
 //		}
-		handler.addObject(new Player(100, 100,handler, ObjectId.Player));
+	//	handler.addObject(new Player(100, 100,handler, ObjectId.Player));
 		//add key input
 	
-		handler.createLevel();
+		//handler.createLevel();
 		this.addKeyListener(new KeyInput(handler)); //inorder for key input to work we must add the new keyinput
 	}
 	
@@ -151,8 +155,30 @@ private void tick() {
 	  g.dispose(); // disposes of this graphics context
       bs.show(); // . show makes next bufferstart visible
 	}
- 
+ private void loadImageLevel( BufferedImage image) {
+	 int w = image.getWidth();
+	 int h = image.getHeight();
+	 
+	 System.out.println("width : " + w + " height : " + h);
+	 
+	 //deciphiring what pixel were on
+	 for (int xx=0; xx<h; xx++) {  //we loop thru every pixel of our image with the proper dimensions
+		 for (int yy = 0; yy<w ; yy++) {
+			 int pixel = image.getRGB(xx, yy); //pixel position -- we used paint.net and zoomed 2400% to start from top left 
+			 int red = (pixel >> 16) & 0xff; //bit operator 
+			 int green = (pixel >> 8) & 0xff;  //getrs what pixel were on and gets the rgb values
+			 int blue = (pixel) & 0xff;
+			 
+			 if (red == 255 && green == 255 && blue == 255)handler.addObject(new Block(xx*32, yy*32, 1, ObjectId.Block)); //DETETCS COLOR AND IF COLOR MACHES THE PIXEL THEN Create a block object  //if 0 dirt block
+			 if (red == 0 && green == 0 && blue == 255)handler.addObject(new Player(xx*32, yy*32,handler, ObjectId.Player)); //Detects color and if  olor pixel maches blue player then it sets object to player
 
+		 }
+	 }
+ }
+
+ public static Texture getInstance() {  //gets instance of our texture  -- in player class just say maingame.getisnatnce()
+	 return tex;
+ }
 public static void main(String[] args) {
 	//mainGame main = new mainGame(); //must create main game object to use methods  since main is static
   	new beanWindow(800, 600 , "Happy Bean runner", new mainGame()); //creates a window for us

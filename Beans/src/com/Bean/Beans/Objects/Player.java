@@ -2,19 +2,25 @@ package com.Bean.Beans.Objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import com.Bean.Beans.Framework.GameObject;
 import com.Bean.Beans.Framework.ObjectId;
+import com.Bean.Beans.Framework.Texture;
 import com.Bean.Beans.Window.Handler;
+import com.Bean.Beans.Window.mainGame;
 
 public class Player extends GameObject {
 	private float width = 48, height = 96;
+	
 	private Handler handler;
+	Texture tex = mainGame.getInstance();
+	
 	private float gravity = 0.4f; //gravitation resistance to player -- as falling = true
 	private final float max_speed = 10; //our velocity will never get less than 10
+	
+	
 	public Player(float x, float y, Handler handler, ObjectId id) {
 		super(x, y, id);
 		this.handler = handler;
@@ -48,7 +54,7 @@ public class Player extends GameObject {
 						  //make same y position to prevent it from getting in block
 						  y = tempObject.getY() + 32; //aligned with block
 						  velY = 0;
-						  
+						  velX = 0;
 					  }
 				  if (getBounds().intersects(tempObject.getBounds())) {
 					//when we reach the bounds of the block  object
@@ -65,7 +71,7 @@ public class Player extends GameObject {
 				  if (getBoundsRight().intersects(tempObject.getBounds())) {
 						//when we reach the bounds of the block  object
 						  //make same y position to prevent it from getting in block
-						  x = tempObject.getX() - width; //aligned with block
+						  x = tempObject.getX() - (width+2) ; //aligned with block
 //						  velY = 0;
 //						  falling = false;
 //						  jumping = false;
@@ -73,7 +79,7 @@ public class Player extends GameObject {
 				  if (getBoundsLeft().intersects(tempObject.getBounds())) {
 						//when we reach the bounds of the block  object
 						  //make same y position to prevent it from getting in block
-						  x = tempObject.getX() + 35; //aligned with block
+						  x = tempObject.getX() + 34; //aligned with block
 //						  velY = 0;
 //						  falling = false;
 //						  jumping = false;
