@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import com.Bean.Beans.Framework.KeyInput;
@@ -32,6 +33,8 @@ public class mainGame extends Canvas implements Runnable { /**
 	
 	
 	public static int width ,height;
+	
+	private BufferedImage level = null;
 	//Test test;  //must import e.g test class to create instance of test class  -- then tick  test 2 and render test 2
 	//handler is better than doing test1,test2,test3 etc
 	
@@ -42,7 +45,10 @@ public class mainGame extends Canvas implements Runnable { /**
 	private void init() { //initialises everything - gets called b4 we start our loop
 		width = getWidth();
 		height = getHeight();
+	
+		BufferedImageLoader loader = new BufferedImageLoader();
 		
+		level = loader.loadImage("/level1.png");
 		handler = new Handler();
 		cam = new Camera(0, 0);
 //		for (int i = 0; i <50; i++) { //no need for test1,2,3 can have 50 objects using random places
