@@ -10,7 +10,7 @@ Creating a one level but complex user friendly game using java.
 
  
 
-1.MAIN CLASSES (2)
+MAIN CLASSES (4) -- classes well be using often
 
 GAME – LOGIC 
 (Has maingame class -- contains handler and tick and render methods + the width and height, also has a for loop for the fps counter)  
