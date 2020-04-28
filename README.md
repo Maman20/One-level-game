@@ -2,7 +2,7 @@
 Creating a one level but complex user friendly game using java.
 //ORGANIZATION @Abdirahman,Dillon,Nyakundi,Ahmed 
 
-1 OBJECT CLASS 
+4 Main CLASS 
 
 4 MAJOR SUB CLASSES 
 
@@ -10,30 +10,54 @@ Creating a one level but complex user friendly game using java.
 
  
 
-1.OBJECT CLASS (1)
+1.MAIN CLASSES (2)
 
-GAME – LOGIC (ONLY HAS A FEW COMMON INSTANCE VARIABLES // E.G CLICKING DETECTION AND KEYBOARD DETECTION.)  
+GAME – LOGIC 
+(Has maingame class -- contains handler and tick and render methods + the width and height, also has a for loop for the fps counter)  
+ 
+ Game Object 
+ 
+ (has x and y corrdinate values for the current object, also has running and falling methods, has Object ID (returns current objects id))
 
-Common(instance vars/functions etc..) – esc, enter, mouse click, keyboard detection, Title and bg
-
+Window 
+    has jframe for the cutrrent window also has the height 
+    has constructpor which has the title,height,width, and game object
+    add all the fram requirements
+    add the game to the frame.
+    
+handler class  -- bettr than saying add -player1 ,player 2 , etc....
+    handles gameobject classes using a game object lister -- just like array lister 
+    use for loops to get current index of the object
+    has addobject 
+    has remove object
+    has create level - handles current level
+    
 
 SECTION 2: MAJOR SUBCLASSES (4)
 
-PLAYER  ::
+PLAYER extends gameobject ::
 
        CONTAINS THE FOLLOWING BASIC SUBCLASSES :
 
-    COLLISION AND MOVEMENT (DETECTION OF COLLISION) 
+   COLLISION AND MOVEMENT (DETECTION OF COLLISION) 
 
-    PlayerInf: (has player info // color etc...) 
+    PlayerInf: (has player info // color etc...) -- spritesheet
 
-    Movement: (deriving from main game logic we create a user-friendly movement framework) 
+    Movement: (deriving from main game logic we create a user-friendly movement framework)  --- HAS VELOCITY WHICH HAS A FLOAT GRAVITY LOW GRAVITY MEANS HIGHER JUMP -- HIGH GRAVITY MEANS LOW JUMP
 
     E.g  Hit (left click) jump (up key) left (left key) right/forward(right key) special (x key) exit (esc)  duck (down key) 
 
     Background: (beautiful scenery made to work expertly with collision detection) 
 
     We will add sub classes like date, login page etc... later 
+    
+    
+Block extends gameobject ::
+   Contains the following ::
+     a single Rectangle block wich we loop over in handlers [createlevel() method -- it creates alot of blocks in symmetry]
+     extends game object so we implement the constructor for this block object and also all its x,y and vely,vel x values.
+     in render method add rectangle
+
 
 RUNTIME::
 
@@ -47,7 +71,7 @@ MAINMENU ::
 
       Play: (easy to program // need user typing script from parent game-logic // press enter) 
 
-      Edit: 
+      Edit:  ---- WONT BE IMPLEMENTED 
 
         Picture of default player color on right  
 
@@ -69,7 +93,7 @@ MAINMENU ::
 
     Exit:  
 
-      Ends game (asks using if and only if) are you sure yes or no? 
+      Ends game (asks using if and only if) are you sure yes or no?  --- USE WINDOWS_LISTENER
 
       If sure end. 
 
@@ -77,7 +101,7 @@ MAINMENU ::
 
   N/BBB - NO INPUT DETECTED (MAIN MENU) THEN THE SIMULATION METHOD IS RUN. 
 
-MENUPAGE ::
+MENUPAGE ::  -- AS YOU PRESS THE .EXE FILE TYOU GET THIS STARTIMNG MENU
 
            CONTAINS THE FOLLOWING BASIC SUBCLASSES 
 
