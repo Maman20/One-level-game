@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import com.Bean.Beans.Framework.GameObject;
 import com.Bean.Beans.Framework.ObjectId;
 import com.Bean.Beans.Framework.Texture;
+import com.Bean.Beans.Window.Animation;
 import com.Bean.Beans.Window.Handler;
 import com.Bean.Beans.Window.mainGame;
 
@@ -16,7 +17,7 @@ public class Player extends GameObject {
 	
 	private Handler handler;
 	Texture tex = mainGame.getInstance();
-	
+	private Animation playerWalk;
 	private float gravity = 0.4f; //gravitation resistance to player -- as falling = true
 	private final float max_speed = 10; //our velocity will never get less than 10
 	
@@ -24,7 +25,7 @@ public class Player extends GameObject {
 	public Player(float x, float y, Handler handler, ObjectId id) {
 		super(x, y, id);
 		this.handler = handler;
-		// TODO Auto-generated constructor stub
+		playerWalk = new Animation (10, tex.player[1],tex.player[2],tex.player[3],tex.player[4],tex.player[5],tex.player[6]);
 	}
 
 
@@ -39,7 +40,9 @@ public class Player extends GameObject {
 				velY = max_speed; 
 			}
 		}
+		
 		Collision(object); //can also put method in tick but for better organisation we do it alone
+		playerWalk.runAnimation();
 	}
 
 	//collsion
@@ -54,13 +57,14 @@ public class Player extends GameObject {
 						  //make same y position to prevent it from getting in block
 						  y = tempObject.getY() + 32; //aligned with block
 						  velY = 0;
-						  velX = 0;
+						//  velX = 0;
 					  }
 				  if (getBounds().intersects(tempObject.getBounds())) {
 					//when we reach the bounds of the block  object
 					  //make same y position to prevent it from getting in block
 					  y = tempObject.getY() - height; //aligned with block
 					  velY = 0;
+					  //velX = 0;
 					  falling = false;
 					  jumping = false;
 				  }
@@ -75,12 +79,14 @@ public class Player extends GameObject {
 //						  velY = 0;
 //						  falling = false;
 //						  jumping = false;
+						  //velX = 0;
 					  }
 				  if (getBoundsLeft().intersects(tempObject.getBounds())) {
 						//when we reach the bounds of the block  object
 						  //make same y position to prevent it from getting in block
 						  x = tempObject.getX() + 34; //aligned with block
 //						  velY = 0;
+						  //velX = 0;
 //						  falling = false;
 //						  jumping = false;
 					  }
@@ -90,8 +96,13 @@ public class Player extends GameObject {
 	public void render(Graphics g) {
 		
 		g.setColor(Color.blue);
-		g.fillRect((int)x, (int)y, (int) width, (int)height);
-	
+		//g.fillRect((int)x, (int)y, (int) width, (int)height);
+		if(velX !=0)
+			playerWalk.drawAnimation(g,(int)x,(int)y, 48 , 96);
+		else  if (this.velX == 0) {
+			g.drawImage(tex.player[0], (int)x, (int)y, 48,96,null);
+		}
+	//g.drawImage(tex.player[0], (int)x, (int)y, 48 ,96 ,null);
 //		Graphics2D g2D = (Graphics2D) g; //casting our graphics to a grapohics2d variable 
 //		g.setColor(Color.RED);
 //		g2D.draw(getBounds());

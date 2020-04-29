@@ -24,8 +24,8 @@ public class Camera {  //follows player
 			this.y = y;
 		}
 
-		public void tick(GameObject player) {  //we watn camera to snap onto player
-			// TODO Auto-generated method stub
+		public void tick(GameObject player) {  //we want camera to snap onto player
+			
 			//tweaning algorithm
 		float	xx= (int) (-player.getX() + ((mainGame.width)/2));
 		float yy = (int) (-player.getY() + ((mainGame.height)/2));

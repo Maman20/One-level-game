@@ -140,7 +140,7 @@ private void tick() {
 	  Graphics2D g2D = (Graphics2D) g; //has translate function
 	 
 	  ////drawing our graphics//////
-	  g.setColor(Color.BLACK);
+	  g.setColor(Color.CYAN);
 	  g.fillRect(0, 0,  getWidth(), getHeight());
 	
 	  g2D.translate(cam.getX(), cam.getY()); //translate everything it sandwiches  //begin of cam

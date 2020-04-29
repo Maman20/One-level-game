@@ -21,6 +21,11 @@
 			<location>C:/Users/Abdirahman/git/One-level-game/One-level-game/Beans/RES/block_sheet.png</location>
 		</link>
 		<link>
+			<name>RES/hero_sheet.png</name>
+			<type>1</type>
+			<location>C:/Users/Abdirahman/git/One-level-game/One-level-game/Beans/RES/hero_sheet.png</location>
+		</link>
+		<link>
 			<name>RES/player_sheet.png</name>
 			<type>1</type>
 			<location>C:/Users/Abdirahman/git/One-level-game/One-level-game/Beans/RES/player_sheet.png</location>
