@@ -9,7 +9,7 @@ public class Texture {  //loads all our texture in our game
 	SpriteSheet bs , ps;
    private BufferedImage block_sheet = null;
    private BufferedImage player_sheet = null;
-   public BufferedImage [] block  = new BufferedImage[2]; 
+   public BufferedImage [] block  = new BufferedImage[3];  //to prevent out  of bounds since last one is '0' make sure you choose number greater i.e bs[7] for 7 icons
    public BufferedImage [] player = new BufferedImage[7];
     
    public Texture () {
@@ -31,7 +31,9 @@ public class Texture {  //loads all our texture in our game
 private void getTextures() {  //handles getting all pour textures
 	// TODO Auto-generated method stub
 	block[0] = bs.grabImage(1, 1, 32, 32); //dirt block
-   block[1] = bs.grabImage(2, 1, 32, 32); //grass block	
+   block[1] = bs.grabImage(3, 1, 32, 32); //grass block	
+  // block[2] = bs.grabImage(6, 4, 32, 32); //green diamond
+   
    
    player[0] = ps.grabImage(1, 1, 32, 64); //idle
    player[1] = ps.grabImage(2, 1, 32, 64);//walking player

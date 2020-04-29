@@ -141,11 +141,11 @@ private void tick() {
 	 
 	  ////drawing our graphics//////
 	  g.setColor(Color.CYAN);
-	  g.fillRect(0, 0,  getWidth(), getHeight());
+	  g.fillRect(0, 0,  getWidth(), getHeight());// our surface
 	
 	  g2D.translate(cam.getX(), cam.getY()); //translate everything it sandwiches  //begin of cam
 	  
-	  //anything in btwn g2d start of cam and end of cam is going to be affected by the camera which is  -- handler.ender
+	  //anything in btwn g2d start of cam and end of cam is going to be affected by the camera which is  -- handler.render
 	  
 	  handler.render(g);
 	  
@@ -161,15 +161,15 @@ private void tick() {
 	 
 	 System.out.println("width : " + w + " height : " + h);
 	 
-	 //deciphiring what pixel were on
+	 //Deciphering what pixel were on
 	 for (int xx=0; xx<h; xx++) {  //we loop thru every pixel of our image with the proper dimensions
 		 for (int yy = 0; yy<w ; yy++) {
-			 int pixel = image.getRGB(xx, yy); //pixel position -- we used paint.net and zoomed 2400% to start from top left 
+			 int pixel = image.getRGB(xx, yy); //pixel position -- we used paint.net and zoomed 2400% to start from top left then used pencil to draw our level out -- since one pencil is one pixel then each pixel = 1 box
 			 int red = (pixel >> 16) & 0xff; //bit operator 
-			 int green = (pixel >> 8) & 0xff;  //getrs what pixel were on and gets the rgb values
+			 int green = (pixel >> 8) & 0xff;  //gets what pixel were on and gets the rgb values
 			 int blue = (pixel) & 0xff;
 			 
-			 if (red == 255 && green == 255 && blue == 255)handler.addObject(new Block(xx*32, yy*32, 1, ObjectId.Block)); //DETETCS COLOR AND IF COLOR MACHES THE PIXEL THEN Create a block object  //if 0 dirt block
+			 if (red == 255 && green == 255 && blue == 255)handler.addObject(new Block(xx*32, yy*32, 1, ObjectId.Block)); //DETETCS COLOR AND IF COLOR MACHES THE PIXEL THEN Create a block object  //if 0 dirt block if type == 1 then grass block
 			 if (red == 0 && green == 0 && blue == 255)handler.addObject(new Player(xx*32, yy*32,handler, ObjectId.Player)); //Detects color and if  olor pixel maches blue player then it sets object to player
 
 		 }
