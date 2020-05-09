@@ -67,7 +67,7 @@ public class Handler { //class to hold all our game objects to a list , updates 
 	public void switchLevel() {
 		clearLevel();
 		cam.setX(0);
-		
+		//cam.setY(0);
 		switch(mainGame.LEVEL) {
 		case 1:
 			LoadImageLevel(level2);

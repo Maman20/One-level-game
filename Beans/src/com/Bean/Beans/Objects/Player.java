@@ -16,7 +16,7 @@ public class Player extends GameObject {
 	
 	private float width = 48, height = 96;
 
-	private float gravity = 0.5f; //gravitation resistance to player -- as falling = true
+	private float gravity = 0.4f; //gravitation resistance to player -- as falling = true
 	private final float max_speed = 10; //our velocity will never get less than 10
 	private int facing = 1; //sets the direction that the player is facing
 	//1 = Right
@@ -40,7 +40,7 @@ public class Player extends GameObject {
 
 
 	public void tick(LinkedList<GameObject> object) {
-		x += velX;
+		x += velX; //moves coordinate of player object according to velocity
 		y += velY;
 		
 		if(velX < 0) facing = -1;
@@ -100,18 +100,20 @@ public class Player extends GameObject {
 					if(getBounds().intersects(tempObject.getBounds())) {
 					handler.switchLevel();
 					}
+
+					
 			  }
 		 }
 	}
 	
 	public void render(Graphics g) {
 		if(jumping) {
-			if(facing == 1)
-				g.drawImage(tex.player_jump[2], (int)x, (int)y, 48, 96, null);
+			if(facing == 1) //using our spritesheets 
+				g.drawImage(tex.player_jump[2], (int)x, (int)y, 48, 96, null); //at a particular index we have a sprite for jumping 
 			else if(facing == -1)
 				g.drawImage(tex.player_jump[3], (int)x, (int)y, 48, 96, null);
 		}else {
-		if(velX != 0) {
+		if(velX != 0) { //moving player
 			if(facing == 1)
 				playerWalkRight.drawAnimation(g, (int)x, (int)y, 48, 96);
 			else

@@ -48,10 +48,6 @@ public class mainGame extends Canvas implements Runnable {
 	
 	private void init() { //initialises everything - gets called before we start our loop
 		
-		handler = new Handler(cam);
-		menu = new MainMenu(this, handler);
-		this.addKeyListener(new KeyInput(handler));
-		this.addMouseListener(menu);
 		
 		width = getWidth();
 		height = getHeight();
@@ -63,11 +59,15 @@ public class mainGame extends Canvas implements Runnable {
 		bg = loader.loadImage("/fantasybg.jpg");
 
 		cam = new Camera(0, 0);
-		
+
+		handler = new Handler(cam);
+		menu = new MainMenu(this, handler);
+		this.addKeyListener(new KeyInput(handler));
+		this.addMouseListener(menu);
 	    if(gameState == STATE.Game)
 		handler.LoadImageLevel(level);
 		
-		this.addKeyListener(new KeyInput(handler)); //in order for key input to work we must add the new keyinput
+		//this.addKeyListener(new KeyInput(handler)); //in order for key input to work we must add the new keyinput
 	}
 	
 	public synchronized void Start() {
@@ -118,8 +118,9 @@ public class mainGame extends Canvas implements Runnable {
  
 
 private void tick() {
-		handler.tick(); //ticks all the objects
+		
 		if(gameState == STATE.Game) {
+			handler.tick(); //ticks all the objects
 			for (int i = 0; i<handler.object.size(); i++) {
 				if (handler.object.get(i).getId() == ObjectId.Player) {
 					cam.tick(handler.object.get(i)); //object we pass in paramater at index i must be player -- ticks the player with the proper object we want
