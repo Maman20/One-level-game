@@ -95,20 +95,11 @@ public class Player extends GameObject {
 	}
 	public void render(Graphics g) {
 		
-		g.setColor(Color.blue);
-		//g.fillRect((int)x, (int)y, (int) width, (int)height);
 		if(velX !=0)
 			playerWalk.drawAnimation(g,(int)x,(int)y, 48 , 96);
 		else  if (this.velX == 0) {
 			g.drawImage(tex.player[0], (int)x, (int)y, 48,96,null);
 		}
-	//g.drawImage(tex.player[0], (int)x, (int)y, 48 ,96 ,null);
-//		Graphics2D g2D = (Graphics2D) g; //casting our graphics to a grapohics2d variable 
-//		g.setColor(Color.RED);
-//		g2D.draw(getBounds());
-//		g2D.draw(getBoundsRight());
-//		g2D.draw(getBoundsLeft());
-//		g2D.draw(getBoundsTop());
 	}
 
 	public Rectangle getBounds() {
