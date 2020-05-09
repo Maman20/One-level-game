@@ -1,6 +1,7 @@
 package com.Bean.Beans.Window;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
@@ -21,11 +22,22 @@ public class mainGame extends Canvas implements Runnable {
 	private boolean running = false;
 	private Thread thread;
 	
+	private MainMenu menu; //creates class of type menu
+	
+	//tells the current state that the game is in
+	public enum STATE{
+		Menu,
+		Game
+	};
+	
+	public STATE gameState = STATE.Menu;
 	
 	public static int width ,height;
 	
-	private BufferedImage level = null, bg = null;
+	BufferedImage level = null;
 	//handler is better than doing test1,test2,test3 etc
+
+	private BufferedImage bg = null;
 	
 	//Object
 	Handler handler;
@@ -35,6 +47,12 @@ public class mainGame extends Canvas implements Runnable {
 	public static int LEVEL = 1;
 	
 	private void init() { //initialises everything - gets called before we start our loop
+		
+		handler = new Handler(cam);
+		menu = new MainMenu(this, handler);
+		this.addKeyListener(new KeyInput(handler));
+		this.addMouseListener(menu);
+		
 		width = getWidth();
 		height = getHeight();
 		
@@ -43,10 +61,10 @@ public class mainGame extends Canvas implements Runnable {
 		BufferedImageLoader loader = new BufferedImageLoader();
 		level = loader.loadImage("/Level_1.png");
 		bg = loader.loadImage("/fantasybg.jpg");
-		
+
 		cam = new Camera(0, 0);
-		handler = new Handler(cam);
 		
+	    if(gameState == STATE.Game)
 		handler.LoadImageLevel(level);
 		
 		this.addKeyListener(new KeyInput(handler)); //in order for key input to work we must add the new keyinput
@@ -100,14 +118,16 @@ public class mainGame extends Canvas implements Runnable {
  
 
 private void tick() {
-		
 		handler.tick(); //ticks all the objects
-		for (int i = 0; i<handler.object.size(); i++) {
-			if (handler.object.get(i).getId() == ObjectId.Player) {
-				cam.tick(handler.object.get(i)); //object we pass in paramater at index i must be player -- ticks the player with the proper object we want
+		if(gameState == STATE.Game) {
+			for (int i = 0; i<handler.object.size(); i++) {
+				if (handler.object.get(i).getId() == ObjectId.Player) {
+					cam.tick(handler.object.get(i)); //object we pass in paramater at index i must be player -- ticks the player with the proper object we want
+				}
 			}
+		}else if(gameState == STATE.Menu) {
+			menu.tick();
 		}
-		
 	}
  private void render() {
 	 // to get our buffering
@@ -135,12 +155,18 @@ private void tick() {
 	  //anything in btwn g2d start of cam and end of cam is going to be affected by the camera which is  -- handler.render
 	  
 	  handler.render(g);
+	  if(gameState == STATE.Game) {
+		  g2D.translate(-cam.getX(), -cam.getY());  //end of cam
+	  }else if(gameState == STATE.Menu) {
+			menu.render(g);//renders Main Menu
+	  }else {
+		  g.setColor(Color.white);
+		  g.drawString("Menu", 100, 100);
+	  }
 	  
-	  g2D.translate(-cam.getX(), -cam.getY());  //end of cam
-	  
-	  /////////////////////
-	  g.dispose(); // disposes of this graphics context
-      bs.show(); // . show makes next bufferstart visible
+		  /////////////////////
+	 g.dispose(); // disposes of this graphics context
+	 bs.show(); // . show makes next bufferstart visible
 	}
 
  	public static Texture getInstance() {  //gets instance of our texture  -- in player class just say maingame.getisnatnce()
