@@ -103,22 +103,18 @@ public class Player extends GameObject {
 	}
 
 	public Rectangle getBounds() {
-		// TODO Auto-generated method stub
 		return new Rectangle((int) ((int)x+(width/4)), (int) ((int)y+height/2), (int) width/2, (int)height/2); //we want in 2 segments
 		
 	}
 	public Rectangle getBoundsTop() {
-		// TODO Auto-generated method stub
 		return new Rectangle((int) ((int)x+(width/4)), (int)y, (int) width/2, (int)height/2);
 		
 	}
 	public Rectangle getBoundsRight() {
-		// TODO Auto-generated method stub
 		return new Rectangle((int) ((int)x+width-5), (int)y+5, (int) 5, (int)height-10);
 		
 	}
 	public Rectangle getBoundsLeft() {
-		// TODO Auto-generated method stub
 		return new Rectangle((int)x, (int)y+5, (int) 5, (int)height-10);
 		
 	}

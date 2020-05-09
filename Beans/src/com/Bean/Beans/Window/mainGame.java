@@ -1,12 +1,10 @@
 package com.Bean.Beans.Window;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.util.Random;
 
 import com.Bean.Beans.Framework.KeyInput;
 import com.Bean.Beans.Framework.ObjectId;
@@ -14,13 +12,11 @@ import com.Bean.Beans.Framework.Texture;
 import com.Bean.Beans.Objects.Block;
 import com.Bean.Beans.Objects.Player;
 
-
 //import com.Bean.Beans.Objects.Test;
 
 //game class what runs the game
-public class mainGame extends Canvas implements Runnable { /**
-	 * 
-	 */
+public class mainGame extends Canvas implements Runnable { 
+	
 	private static final long serialVersionUID = -571047980453441592L;
 
 // we extend the  runnable interface
@@ -36,13 +32,11 @@ public class mainGame extends Canvas implements Runnable { /**
 	public static int width ,height;
 	
 	private BufferedImage level = null;
-	//Test test;  //must import e.g test class to create instance of test class  -- then tick  test 2 and render test 2
 	//handler is better than doing test1,test2,test3 etc
 	
 	//Object
 	Handler handler;
 	Camera cam;
-	Random rand = new Random();
 	static Texture tex;
 	private void init() { //initialises everything - gets called b4 we start our loop
 		width = getWidth();
@@ -140,7 +134,6 @@ private void tick() {
 	  Graphics2D g2D = (Graphics2D) g; //has translate function
 	 
 	  ////drawing our graphics//////
-	  g.setColor(Color.CYAN);
 	  g.fillRect(0, 0,  getWidth(), getHeight());// our surface
 	
 	  g2D.translate(cam.getX(), cam.getY()); //translate everything it sandwiches  //begin of cam
