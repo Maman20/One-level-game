@@ -40,6 +40,8 @@ public class Player extends GameObject {
 		x+=velX;
 		y+=velY;
 		
+		if(velX < 0) facing = -1;
+		else if(velX > 0) facing = 1;
 		
 		
 		if (falling||jumping) {
@@ -51,6 +53,7 @@ public class Player extends GameObject {
 		}
 		
 		Collision(object); //can also put method in tick but for better organisation we do it alone
+		
 		playerWalkRight.runAnimation();
 		playerWalkLeft.runAnimation();
 	}
@@ -74,12 +77,10 @@ public class Player extends GameObject {
 					  //make same y position to prevent it from getting in block
 					  y = tempObject.getY() - height; //aligned with block
 					  velY = 0;
-					  //velX = 0;
 					  falling = false;
 					  jumping = false;
 				  }
 				  else { //if it doesnt intersect
-					//  jumping = true;
 					  falling = true;
 				  }
 				  if (getBoundsRight().intersects(tempObject.getBounds())) {
@@ -90,19 +91,21 @@ public class Player extends GameObject {
 //						  falling = false;
 //						  jumping = false;
 						  //velX = 0;
-					  }
+				  }
 				  if (getBoundsLeft().intersects(tempObject.getBounds())) {
-						//when we reach the bounds of the block  object
-						  //make same y position to prevent it from getting in block
-						  x = tempObject.getX() + 34; //aligned with block
-//						  velY = 0;
-						  //velX = 0;
-//						  falling = false;
-//						  jumping = false;
-					  }
+					//when we reach the bounds of the block  object
+					  //make same y position to prevent it from getting in block
+					  x = tempObject.getX() + 34; //aligned with block
+				  }
+			  }else if(tempObject.getId() == ObjectId.Flag) {
+					//switch level
+					if(getBounds().intersects(tempObject.getBounds())) {
+					handler.switchLevel();
+					}
 			  }
-		  }
+		 }
 	}
+	
 	public void render(Graphics g) {
 		if(jumping) {
 			if(facing == 1)
@@ -140,7 +143,5 @@ public class Player extends GameObject {
 		return new Rectangle((int)x, (int)y+5, (int) 5, (int)height-10);
 		
 	}
-	
-	
 
 }
