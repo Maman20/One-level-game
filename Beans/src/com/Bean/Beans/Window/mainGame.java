@@ -9,10 +9,6 @@ import java.awt.image.BufferedImage;
 import com.Bean.Beans.Framework.KeyInput;
 import com.Bean.Beans.Framework.ObjectId;
 import com.Bean.Beans.Framework.Texture;
-import com.Bean.Beans.Objects.Block;
-import com.Bean.Beans.Objects.Player;
-
-//import com.Bean.Beans.Objects.Test;
 
 //game class what runs the game
 public class mainGame extends Canvas implements Runnable { 
@@ -28,13 +24,15 @@ public class mainGame extends Canvas implements Runnable {
 	
 	public static int width ,height;
 	
-	private BufferedImage level = null;
+	private BufferedImage level = null, bg = null;
 	//handler is better than doing test1,test2,test3 etc
 	
 	//Object
 	Handler handler;
 	Camera cam;
 	static Texture tex;
+	
+	public static int LEVEL = 1;
 	
 	private void init() { //initialises everything - gets called before we start our loop
 		width = getWidth();
@@ -43,12 +41,13 @@ public class mainGame extends Canvas implements Runnable {
 	    tex = new Texture();
 	    
 		BufferedImageLoader loader = new BufferedImageLoader();
-		level = loader.loadImage("/level1.png");
+		level = loader.loadImage("/Level_1.png");
+		bg = loader.loadImage("/fantasybg.jpg");
 		
 		cam = new Camera(0, 0);
-		handler = new Handler();
+		handler = new Handler(cam);
 		
-		loadImageLevel(level);
+		handler.LoadImageLevel(level);
 		
 		this.addKeyListener(new KeyInput(handler)); //in order for key input to work we must add the new keyinput
 	}
@@ -128,6 +127,8 @@ private void tick() {
 	 
 	  ////drawing our graphics//////
 	  g.fillRect(0, 0,  getWidth(), getHeight());// our surface
+	  
+	  g.drawImage(bg, 0, 0, null);
 	
 	  g2D.translate(cam.getX(), cam.getY()); //translate everything it sandwiches  //begin of cam
 	  
@@ -135,41 +136,18 @@ private void tick() {
 	  
 	  handler.render(g);
 	  
+	  g2D.translate(-cam.getX(), -cam.getY());  //end of cam
 	  
-	  g2D.translate(cam.getX(), cam.getY());  //end of cam
 	  /////////////////////
 	  g.dispose(); // disposes of this graphics context
       bs.show(); // . show makes next bufferstart visible
 	}
- private void loadImageLevel( BufferedImage image) {
-	 int w = image.getWidth();
-	 int h = image.getHeight();
-	 
-	 System.out.println("width : " + w + " height : " + h);
-	 
-	 //Deciphering what pixel were on
-	 for (int xx=0; xx<h; xx++) {  //we loop thru every pixel of our image with the proper dimensions
-		 for (int yy = 0; yy<w ; yy++) {
-			 int pixel = image.getRGB(xx, yy); //pixel position -- we used paint.net and zoomed 2400% to start from top left then used pencil to draw our level out -- since one pencil is one pixel then each pixel = 1 box
-			 int red = (pixel >> 16) & 0xff; //bit operator 
-			 int green = (pixel >> 8) & 0xff;  //gets what pixel were on and gets the rgb values
-			 int blue = (pixel) & 0xff;
-			 
-			 if (red == 255 && green == 255 && blue == 255)handler.addObject(new Block(xx*32, yy*32, 1, ObjectId.Block)); //DETETCS COLOR AND IF COLOR MACHES THE PIXEL THEN Create a block object  //if 0 dirt block if type == 1 then grass block
-			 if (red == 0 && green == 0 && blue == 255)handler.addObject(new Player(xx*32, yy*32,handler, ObjectId.Player)); //Detects color and if  olor pixel maches blue player then it sets object to player
 
-		 }
-	 }
- }
-
- public static Texture getInstance() {  //gets instance of our texture  -- in player class just say maingame.getisnatnce()
-	 return tex;
- }
-public static void main(String[] args) {
-	//mainGame main = new mainGame(); //must create main game object to use methods  since main is static
-  	new beanWindow(800, 600 , "Happy Bean runner", new mainGame()); //creates a window for us
-//  	main.run();
- 	//main.Start();
-//new mainGame();  
-}
+ 	public static Texture getInstance() {  //gets instance of our texture  -- in player class just say maingame.getisnatnce()
+	 	return tex;
+ 	}
+ 	
+ 	public static void main(String[] args) {
+  		new beanWindow(800, 600 , "Happy Bean runner", new mainGame()); //creates a window for us 
+	}
 }
