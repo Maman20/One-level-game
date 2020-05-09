@@ -13,25 +13,34 @@ import com.Bean.Beans.Window.Handler;
 import com.Bean.Beans.Window.mainGame;
 
 public class Player extends GameObject {
-	private float width = 48, height = 96;
 	
-	private Handler handler;
-	Texture tex = mainGame.getInstance();
-	private Animation playerWalk;
+	private float width = 48, height = 96;
+
 	private float gravity = 0.4f; //gravitation resistance to player -- as falling = true
 	private final float max_speed = 10; //our velocity will never get less than 10
+	private int facing = 1; //sets the direction that the player is facing
+	//1 = Right
+	//-1 = Left
 	
+	private Handler handler;
+	
+	Texture tex = mainGame.getInstance();
+	
+	private Animation playerWalkRight, playerWalkLeft;
 	
 	public Player(float x, float y, Handler handler, ObjectId id) {
 		super(x, y, id);
 		this.handler = handler;
-		playerWalk = new Animation (10, tex.player[1],tex.player[2],tex.player[3],tex.player[4],tex.player[5],tex.player[6]);
+		playerWalkRight = new Animation (10, tex.player[1],tex.player[2],tex.player[3],tex.player[4],tex.player[5],tex.player[6]);
+		playerWalkRight = new Animation (10, tex.player[8],tex.player[9],tex.player[10],tex.player[11],tex.player[12],tex.player[13]);
 	}
 
 
 	public void tick(LinkedList<GameObject> object) {
 		x+=velX;
 		y+=velY;
+		
+		
 		
 		if (falling||jumping) {
 			velY += gravity;
@@ -42,7 +51,8 @@ public class Player extends GameObject {
 		}
 		
 		Collision(object); //can also put method in tick but for better organisation we do it alone
-		playerWalk.runAnimation();
+		playerWalkRight.runAnimation();
+		playerWalkLeft.runAnimation();
 	}
 
 	//collsion
@@ -94,11 +104,23 @@ public class Player extends GameObject {
 		  }
 	}
 	public void render(Graphics g) {
-		
-		if(velX !=0)
-			playerWalk.drawAnimation(g,(int)x,(int)y, 48 , 96);
-		else  if (this.velX == 0) {
-			g.drawImage(tex.player[0], (int)x, (int)y, 48,96,null);
+		if(jumping) {
+			if(facing == 1)
+				g.drawImage(tex.player_jump[2], (int)x, (int)y, 48, 96, null);
+			else if(facing == -1)
+				g.drawImage(tex.player_jump[3], (int)x, (int)y, 48, 96, null);
+		}else {
+		if(velX != 0) {
+			if(facing == 1)
+				playerWalkRight.drawAnimation(g, (int)x, (int)y, 48, 96);
+			else
+				playerWalkLeft.drawAnimation(g, (int)x, (int)y, 48, 96);
+		}else{
+			if(facing == 1)
+				g.drawImage(tex.player[0], (int)x, (int)y, 48, 96, null);
+			else if(facing == -1)
+				g.drawImage(tex.player[7], (int)x, (int)y, 48, 96, null);
+			}
 		}
 	}
 

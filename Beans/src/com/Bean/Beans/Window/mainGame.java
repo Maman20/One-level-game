@@ -20,9 +20,6 @@ public class mainGame extends Canvas implements Runnable {
 	private static final long serialVersionUID = -571047980453441592L;
 
 // we extend the  runnable interface
-
-	
-	//private static final long serialVersionUID = 1L;
     
 	//starting our thread
 	private boolean running = false;
@@ -38,26 +35,22 @@ public class mainGame extends Canvas implements Runnable {
 	Handler handler;
 	Camera cam;
 	static Texture tex;
-	private void init() { //initialises everything - gets called b4 we start our loop
+	
+	private void init() { //initialises everything - gets called before we start our loop
 		width = getWidth();
 		height = getHeight();
-	    tex = new Texture();
-		BufferedImageLoader loader = new BufferedImageLoader();
 		
+	    tex = new Texture();
+	    
+		BufferedImageLoader loader = new BufferedImageLoader();
 		level = loader.loadImage("/level1.png");
-		handler = new Handler();
+		
 		cam = new Camera(0, 0);
+		handler = new Handler();
 		
 		loadImageLevel(level);
-//		for (int i = 0; i <50; i++) { //no need for test1,2,3 can have 50 objects using random places
-//				handler.addObject(new Block(rand.nextInt(800), rand.nextInt(600), ObjectId.Block)); //must create enum contant of test before using it in handler class
-//				//USING RANDOM POINT BETWEEN OUR WIDTH AND HEIGHT	
-//		}
-	//	handler.addObject(new Player(100, 100,handler, ObjectId.Player));
-		//add key input
-	
-		//handler.createLevel();
-		this.addKeyListener(new KeyInput(handler)); //inorder for key input to work we must add the new keyinput
+		
+		this.addKeyListener(new KeyInput(handler)); //in order for key input to work we must add the new keyinput
 	}
 	
 	public synchronized void Start() {
@@ -112,13 +105,13 @@ private void tick() {
 		handler.tick(); //ticks all the objects
 		for (int i = 0; i<handler.object.size(); i++) {
 			if (handler.object.get(i).getId() == ObjectId.Player) {
-				cam.tick(handler.object.get(i)); //objhect we pass in aramater at index i must be player -- ticks the player with the proper object we want
+				cam.tick(handler.object.get(i)); //object we pass in paramater at index i must be player -- ticks the player with the proper object we want
 			}
 		}
 		
 	}
  private void render() {
-	 // to get our buiffering
+	 // to get our buffering
 	  BufferStrategy bs = this.getBufferStrategy(); // this refers to the canvas class btw
 	  //intiialize once since buffer gets called constantly
 	 
