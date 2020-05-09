@@ -61,5 +61,6 @@ private void getTextures() {  //handles getting all pour textures
 	player_jump[4] = ps.grabImage(12, 2, 32, 64); //jumping animation for player
 	player_jump[5] = ps.grabImage(13, 2, 32, 64); //jumping animation for player
    
-}
+	}
+
 }
