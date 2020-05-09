@@ -8,6 +8,7 @@ import com.Bean.Beans.Framework.GameObject;
 import com.Bean.Beans.Framework.ObjectId;
 import com.Bean.Beans.Framework.Texture;
 import com.Bean.Beans.Window.Animation;
+import com.Bean.Beans.Window.Camera;
 import com.Bean.Beans.Window.Handler;
 import com.Bean.Beans.Window.mainGame;
 
@@ -15,29 +16,32 @@ public class Player extends GameObject {
 	
 	private float width = 48, height = 96;
 
-	private float gravity = 0.4f; //gravitation resistance to player -- as falling = true
+	private float gravity = 0.5f; //gravitation resistance to player -- as falling = true
 	private final float max_speed = 10; //our velocity will never get less than 10
 	private int facing = 1; //sets the direction that the player is facing
 	//1 = Right
 	//-1 = Left
 	
 	private Handler handler;
+	private Camera cam;
 	
 	Texture tex = mainGame.getInstance();
 	
 	private Animation playerWalkRight, playerWalkLeft;
 	
-	public Player(float x, float y, Handler handler, ObjectId id) {
+	public Player(float x, float y, Handler handler, Camera cam, ObjectId id) {
 		super(x, y, id);
 		this.handler = handler;
-		playerWalkRight = new Animation (10, tex.player[1],tex.player[2],tex.player[3],tex.player[4],tex.player[5],tex.player[6]);
-		playerWalkRight = new Animation (10, tex.player[8],tex.player[9],tex.player[10],tex.player[11],tex.player[12],tex.player[13]);
+		this.cam = cam;
+		
+		playerWalkRight = new Animation (5, tex.player[1],tex.player[2],tex.player[3],tex.player[4],tex.player[5],tex.player[6]);
+		playerWalkLeft = new Animation (5, tex.player[8],tex.player[9],tex.player[10],tex.player[11],tex.player[12],tex.player[13]);
 	}
 
 
 	public void tick(LinkedList<GameObject> object) {
-		x+=velX;
-		y+=velY;
+		x += velX;
+		y += velY;
 		
 		if(velX < 0) facing = -1;
 		else if(velX > 0) facing = 1;
@@ -57,7 +61,7 @@ public class Player extends GameObject {
 		playerWalkLeft.runAnimation();
 	}
 
-	//collsion
+	//collision
 	private void Collision(LinkedList<GameObject> object)  {
 		  for (int i =0; i<handler.object.size(); i ++) {
 			  GameObject tempObject = handler.object.get(i); //stores to temporary gameoBJECT
@@ -69,7 +73,6 @@ public class Player extends GameObject {
 						  //make same y position to prevent it from getting in block
 						  y = tempObject.getY() + 32; //aligned with block
 						  velY = 0;
-						//  velX = 0;
 					  }
 				  if (getBounds().intersects(tempObject.getBounds())) {
 					//when we reach the bounds of the block  object
@@ -79,22 +82,18 @@ public class Player extends GameObject {
 					  falling = false;
 					  jumping = false;
 				  }
-				  else { //if it doesnt intersect
+				  else { //if it does'nt intersect
 					  falling = true;
 				  }
 				  if (getBoundsRight().intersects(tempObject.getBounds())) {
 						//when we reach the bounds of the block  object
 						  //make same y position to prevent it from getting in block
-						  x = tempObject.getX() - (width+2) ; //aligned with block
-//						  velY = 0;
-//						  falling = false;
-//						  jumping = false;
-						  //velX = 0;
+						  x = tempObject.getX() - width; //aligned with block
 				  }
 				  if (getBoundsLeft().intersects(tempObject.getBounds())) {
 					//when we reach the bounds of the block  object
 					  //make same y position to prevent it from getting in block
-					  x = tempObject.getX() + 34; //aligned with block
+					  x = tempObject.getX() + 32; //aligned with block
 				  }
 			  }else if(tempObject.getId() == ObjectId.Flag) {
 					//switch level

@@ -2,7 +2,6 @@ package com.Bean.Beans.Framework;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Iterator;
 
 import com.Bean.Beans.Window.Handler;
 //our basic key input 
