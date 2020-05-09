@@ -23,7 +23,7 @@ public class KeyInput extends KeyAdapter { //keyadaptor receves key events
 				if (tempObject.getId() == ObjectId.Player) { //making sure we have an object of id player -- or aplayer object
 					if (key == KeyEvent.VK_D ) tempObject.setVelocityX(5); //moves by 5
 					if (key == KeyEvent.VK_A|| key == KeyEvent.VK_LEFT) tempObject.setVelocityX(-5);
-					if (key == KeyEvent.VK_SPACE && !tempObject.isJumping()){//must state falling back to true -- in pl;ayer  class
+					if (key == KeyEvent.VK_SPACE && !tempObject.isJumping()){//must state falling back to true -- in player class
 					tempObject.setJumping(true);
 					tempObject.setVelocityY(-10);
 					}
