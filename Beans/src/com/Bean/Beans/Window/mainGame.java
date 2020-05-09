@@ -22,7 +22,7 @@ public class mainGame extends Canvas implements Runnable {
 	private boolean running = false;
 	private Thread thread;
 	
-	private MainMenu menu; //creates class of type menu
+	static MainMenu menu; //creates class of type menu
 	
 	//tells the current state that the game is in
 	public enum STATE{

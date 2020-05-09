@@ -9,6 +9,7 @@ import com.Bean.Beans.Framework.ObjectId;
 import com.Bean.Beans.Objects.Block;
 import com.Bean.Beans.Objects.Flag;
 import com.Bean.Beans.Objects.Player;
+import com.Bean.Beans.Window.mainGame.STATE;
 
 
 public class Handler { //class to hold all our game objects to a list , updates and renders all of them
@@ -67,11 +68,13 @@ public class Handler { //class to hold all our game objects to a list , updates 
 	public void switchLevel() {
 		clearLevel();
 		cam.setX(0);
-		//cam.setY(0);
-		switch(mainGame.LEVEL) {
+		
+		switch(mainGame.LEVEL) { //switching btwn levels
 		case 1:
 			LoadImageLevel(level2);
 			break;
+		
+	
 		}
 	}
 	
