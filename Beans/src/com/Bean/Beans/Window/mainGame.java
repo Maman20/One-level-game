@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import com.Bean.Beans.Framework.KeyInput;
 import com.Bean.Beans.Framework.ObjectId;
 import com.Bean.Beans.Framework.Texture;
+import com.Bean.Beans.Objects.Player;
 
 //game class what runs the game
 public class mainGame extends Canvas implements Runnable { 
@@ -34,10 +35,11 @@ public class mainGame extends Canvas implements Runnable {
 	
 	public static int width ,height;
 	
+	
 	BufferedImage level = null;
 	//handler is better than doing test1,test2,test3 etc
-
-	private BufferedImage bg = null;
+	static BufferedImageLoader loader;
+	public static BufferedImage bg = null;
 	
 	//Object
 	Handler handler;
@@ -54,9 +56,9 @@ public class mainGame extends Canvas implements Runnable {
 		
 	    tex = new Texture();
 	    
-		BufferedImageLoader loader = new BufferedImageLoader();
+		 loader = new BufferedImageLoader();
 		level = loader.loadImage("/Level_1.png");
-		bg = loader.loadImage("/fantasybg.jpg");
+		bg = loader.loadImage("/background.png");
 
 		cam = new Camera(0, 0);
 
@@ -127,6 +129,7 @@ private void tick() {
 				}
 			}
 		}else if(gameState == STATE.Menu) {
+			
 			menu.tick();
 		}
 	}

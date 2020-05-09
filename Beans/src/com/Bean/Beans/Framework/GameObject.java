@@ -8,7 +8,7 @@ public abstract class GameObject { //everything (objectwise) we use will extend 
     protected float x,y; //protected -- child class can use no one else
     protected ObjectId id;
     protected float velX = 0, velY =0;
-	protected boolean falling = true;
+	protected static boolean falling = true;
 	protected boolean jumping = false; //handles falling and jumping
     
 	
@@ -61,7 +61,7 @@ public abstract class GameObject { //everything (objectwise) we use will extend 
 		this.velY = velY;
 		
 	}
-	public boolean isFalling() {
+	public static boolean isFalling() {
 		return falling;
 	}
 

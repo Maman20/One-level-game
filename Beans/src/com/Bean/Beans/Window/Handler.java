@@ -72,6 +72,8 @@ public class Handler { //class to hold all our game objects to a list , updates 
 		switch(mainGame.LEVEL) { //switching btwn levels
 		case 1:
 			LoadImageLevel(level2);
+			mainGame.loader = new BufferedImageLoader();
+			mainGame.bg = mainGame.loader.loadImage("/fantasybg.jpg");
 			break;
 		
 	

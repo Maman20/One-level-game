@@ -12,7 +12,7 @@ public class MainMenu extends MouseAdapter{
 
 	private mainGame game;
 	private Handler handler;
-	
+	int keypressed = 0;
 	public MainMenu(mainGame game, Handler handler) {
 		this.game = game;
 		this.handler = handler;
@@ -23,15 +23,20 @@ public class MainMenu extends MouseAdapter{
 		int my = e.getY(); //gets the position of the mouse on the y-axis
 		
 		//play button
+		if (keypressed <1) { //can only press it once
 		if(mouseOver(mx, my, 300, 250, 200, 70)) {
 			game.gameState = STATE.Game;
 			handler.LoadImageLevel(game.level);
+			
 		}
 		
 		//quit button
 		if(mouseOver(mx, my, 300, 350, 200, 70)) {
 			System.exit(1);
+			
 		}
+		}
+		keypressed ++;
 	}
 	
 	public void mouseReleased(MouseEvent e) {

@@ -54,6 +54,9 @@ public class Player extends GameObject {
 				velY = max_speed; 
 			}
 		}
+		if (Player.isFalling() && System.currentTimeMillis()==10000) {
+			System.out.println("HAHA");
+		}
 		
 		Collision(object); //can also put method in tick but for better organisation we do it alone
 		
