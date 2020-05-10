@@ -59,7 +59,7 @@ Block extends gameobject ::
      in render method add rectangle
 
 
-RUNTIME::
+RUNTIME::  //NOT USED
 
         CONTAINS THE FOLLOWING BASIC SUBCLASSES 
 
@@ -69,7 +69,7 @@ MAINMENU ::
 
          CONTAINS THE FOLLOWING BASIC SUBCLASSES 
 
-      Play: (easy to program // need user typing script from parent game-logic // press enter) 
+      Play: IF GAME STATE == MENU AND YOU HIT PLAY THEN WE LOAD UP HANDLER AND LEVEL 
 
       Edit:  ---- WONT BE IMPLEMENTED 
 
@@ -85,15 +85,15 @@ MAINMENU ::
 
         Reset. (changes back to default) if too problematic then we remove feature. 
 
-    Credits:  
+    Credits:  --- not implemented
 
        Running text going up down of the team info. 
 
        Escape (from object class game-logic) pressed to go back to main 
 
-    Exit:  
+    QUIT:  
 
-      Ends game (asks using if and only if) are you sure yes or no?  --- USE WINDOWS_LISTENER
+      Ends game IF GAME STATE IS MENU
 
       If sure end. 
 
@@ -105,6 +105,6 @@ MENUPAGE ::  -- AS YOU PRESS THE .EXE FILE TYOU GET THIS STARTIMNG MENU
 
            CONTAINS THE FOLLOWING BASIC SUBCLASSES 
 
-    1. Start: (if pressed enter goes to main menu class) 
+    1. PLAY: (if pressed enter goes TO GAME STATE) 
 
-    2. No action object: (uses runtime class and simulation method to determine how much   time spent and plays animation/video) 
+    2.QUIT: EXITS GAME
