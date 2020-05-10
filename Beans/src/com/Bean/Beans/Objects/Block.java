@@ -11,7 +11,7 @@ import com.Bean.Beans.Window.mainGame;
 
 public class Block extends GameObject{
 
-	Texture tex = mainGame.getInstance();
+	Texture tex = mainGame.getInstance(); //in maingame  class
 	private int type;
 	
 	public Block(float x, float y,int type, ObjectId id) { 

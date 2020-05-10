@@ -31,7 +31,7 @@ public class Animation {
 	}
  
 
-	private void nextFrame() {
+	private void nextFrame() { 
 	for (int i =0; i <frames; i++) {  
 		if (count == i)
 			 currentImg = images[i]; //if count = 0 and i =0,, turns current image to image 0-- images[0] our first image

@@ -19,7 +19,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class beanWindow implements ActionListener{
+public class beanWindow implements ActionListener{ //java library
 	public JFrame frame;
 	public JMenuBar bar;
 	public JMenu menu;

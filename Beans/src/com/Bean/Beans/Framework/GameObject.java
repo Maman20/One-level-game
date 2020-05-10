@@ -24,7 +24,7 @@ public abstract class GameObject { //everything (objectwise) we use will extend 
 	
 	
 
-	public  abstract void tick (LinkedList<GameObject> object);
+	public  abstract void tick (LinkedList<GameObject> object); //java library
 	public  abstract void render (Graphics g); //-- rendering our graphics
 	public  abstract Rectangle getBounds(); //gets collision bounding for our player
 	//methods our game object requires

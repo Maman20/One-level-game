@@ -13,7 +13,7 @@ public class Flag extends GameObject{
 	public Flag(float x, float y, ObjectId id) {
 		super(x, y, id);
 	}
-//required abstartc classes
+//required abstarct classes
 	public void tick(LinkedList<GameObject> object) { 
 		x += velX;
 	}

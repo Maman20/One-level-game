@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 
 import com.Bean.Beans.Window.mainGame.STATE;
 
-public class MainMenu extends MouseAdapter{
+public class MainMenu extends MouseAdapter{ //java library
 
 	private mainGame game;
 	private Handler handler;
@@ -34,7 +34,7 @@ public class MainMenu extends MouseAdapter{
 	
 		if(game.gameState == STATE.Menu) { //if we are in menu
 		if(mouseOver(mx, my, 300, 350, 200, 70)) {
-			System.exit(1);
+			System.exit(0);
 			return; 
 		
 		}
@@ -62,8 +62,8 @@ public class MainMenu extends MouseAdapter{
 	public void render(Graphics g) {
 		Font fnt = new Font("Times New Roman", 10, 30);
 		Font fnt2 = new Font("Magneto", 10, 30); //we found this in javas fonts if you go to windows appearance etc..
-		//3 rectangles one draw string represents title
-		
+		//2 rectangles one draw string represents title
+		      
 		g.setColor(Color.white);
 		g.setFont(fnt);
 		g.drawString("Menu Main", 330, 200);

@@ -27,7 +27,7 @@ public class Camera {  //follows player
 		public void tick(GameObject player) {  //we want camera to snap onto player
 			
 			//tweaning algorithm
-		float	xx= (int) (-player.getX() + ((mainGame.width)/2));
+		float	xx= (int) (-player.getX() + ((mainGame.width)/2)); //online resource //follows player's x and y
 		float yy = (int) (-player.getY() + ((mainGame.height)/2));
 		     x+= (xx - x) * (0.05);
 		     y+= (yy-y) * (0.05);
