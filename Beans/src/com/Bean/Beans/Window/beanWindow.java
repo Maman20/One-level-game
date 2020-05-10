@@ -35,7 +35,7 @@ public class beanWindow implements ActionListener{
     	
     	 //adds the game object to the Jframe , with its dimensions
     	 frame = new JFrame(title);
-    	 frame.add(game);//adds game to frames;
+    	 frame.add(game);//adds game to frame;
     	 frame.pack(); //packs to window
     	 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	 frame.setResizable(false);
@@ -56,7 +56,7 @@ public class beanWindow implements ActionListener{
        	 frame.setJMenuBar(bar);
        	 
     	 frame.setVisible(true);
-    	 game.Start(); //start our game threadasasas
+    	 game.Start(); //start our game thread //calls method run
      }
 
 	@Override
