@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 import com.Bean.Beans.Window.Handler;
 //our basic key input 
-public class KeyInput extends KeyAdapter { //keyadaptor receves key events
+public class KeyInput extends KeyAdapter { //keyadaptor receives key events
 		Handler handler;
 		GameObject tempObject;
 		public KeyInput (Handler handler) { //pass handler object from our game class

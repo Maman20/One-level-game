@@ -34,7 +34,7 @@ public class Player extends GameObject {
 		this.handler = handler;
 		this.cam = cam;
 		
-		playerWalkRight = new Animation (5, tex.player[1],tex.player[2],tex.player[3],tex.player[4],tex.player[5],tex.player[6]);
+		playerWalkRight = new Animation (5, tex.player[1],tex.player[2],tex.player[3],tex.player[4],tex.player[5],tex.player[6]); //starting from col1 : row 1 (index 1- 6 (texture class)
 		playerWalkLeft = new Animation (5, tex.player[8],tex.player[9],tex.player[10],tex.player[11],tex.player[12],tex.player[13]);
 	}
 
@@ -47,16 +47,14 @@ public class Player extends GameObject {
 		else if(velX > 0) facing = 1;
 		
 		
-		if (falling||jumping) {
+		if (falling||jumping) { //setting up our velocity and gravity
 			velY += gravity;
 			
-			if (velY > max_speed) {
+			if (velY > max_speed) { //if we reach very high speeds then it sets it back to max speed
 				velY = max_speed; 
 			}
 		}
-		if (Player.isFalling() && System.currentTimeMillis()==10000) {
-			System.out.println("HAHA");
-		}
+		
 		
 		Collision(object); //can also put method in tick but for better organisation we do it alone
 		
@@ -129,7 +127,16 @@ public class Player extends GameObject {
 			}
 		}
 	}
-
+	//                         top
+//                           ______
+	//rectangular bounding _|      |_
+//	                       ||      ||
+//						   ||______||
+//  left box bounding	   ||      ||  //right boudning
+//	                       ||______||
+//                          
+	//                       bottom
+//	
 	public Rectangle getBounds() {
 		return new Rectangle((int) ((int)x+(width/4)), (int) ((int)y+height/2), (int) width/2, (int)height/2); //we want in 2 segments
 		

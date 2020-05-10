@@ -14,25 +14,25 @@ public class Block extends GameObject{
 	Texture tex = mainGame.getInstance();
 	private int type;
 	
-	public Block(float x, float y,int type, ObjectId id) {
+	public Block(float x, float y,int type, ObjectId id) { 
 		super(x, y, id);
 		this.type = type;
 	}
 
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(LinkedList<GameObject> object) { //required as this class is a child and parent has abstarct methods
 		
 	}
 
 	public void render(Graphics g) {
 		//what the graphics for this object will render
 		if (type == 0)  //dirt block
-			g.drawImage(tex.block[0], (int)x, (int)y, null);
+			g.drawImage(tex.block[0], (int)x, (int)y, null); //array positioning system where by 0 is the first pixel which is an image
 		if (type ==1)   //grass block
 				g.drawImage(tex.block[1], (int)x, (int)y, null);	
 	}
 
-	public Rectangle getBounds() {
-		return new Rectangle((int)x, (int)y, 32, 32) ;
+	public Rectangle getBounds() { //required
+		return new Rectangle((int)x, (int)y, 32, 32) ; //size of our blocks
 	}
 
 }

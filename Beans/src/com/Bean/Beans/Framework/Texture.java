@@ -16,7 +16,7 @@ public class Texture {  //loads all our texture in our game
     
    public Texture () {
 	   
-	   BufferedImageLoader loader = new BufferedImageLoader();
+	   BufferedImageLoader loader = new BufferedImageLoader(); //loading images
 	   try {
 		block_sheet = loader.loadImage("/block_sheet.png");
 		player_sheet = loader.loadImage("/player_sheet.png");

@@ -11,7 +11,7 @@ public class Animation {
 	private int index = 0;
 	private int count = 0;
  
-	private BufferedImage[] images;
+	private BufferedImage[] images; 
 	private BufferedImage currentImg;
  
 	public Animation (int speed, BufferedImage... args) { //allows us an infinite amount of parameters containign our buffered image

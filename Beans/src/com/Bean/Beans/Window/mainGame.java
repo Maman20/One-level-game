@@ -1,3 +1,32 @@
+/// GENERAL CODE INFO //////////
+/* Code info:
+ * Authors : Abdirahman Abdi
+ *          :Dillon Zieglemann
+ *          :Bruce Nyakundi
+ *          :Ahmed Mohamoud
+ * Course : OOP programming
+ * Instructor: Zakaria Baani
+ * Due date: 05/10/2020
+ */
+
+//pseudocode
+
+//1.extend canvas and implement runnable(thread)
+//2.create our window frame (has width,height and game)
+//3.intiialize our game 
+//4.create run,tick and render methods
+//5.create init method for intializing stuff
+//6.ability to loop thru and change frames
+//7.use buffer strategy
+//8.Use enums for ID AND GAME STATE
+//9.use a handler class that uses an array list to store game objects
+//10.game object class that is parent to objects created and has tick,render and rectangle(bounding) abstract methods
+//11.key input class
+//12.bit operating system to check for pixel color 
+//13.swap through sprites and animations using array positioning
+//14.use coordinate system for objects and bounding and game state mouse adapter.
+//15.implement all methods and use heirachy
+
 package com.Bean.Beans.Window;
 
 import java.awt.Canvas;
@@ -121,7 +150,7 @@ public class mainGame extends Canvas implements Runnable {
 
 private void tick() {
 		
-		if(gameState == STATE.Game) {
+		if(gameState == STATE.Game) { //if we are the game state
 			handler.tick(); //ticks all the objects
 			for (int i = 0; i<handler.object.size(); i++) {
 				if (handler.object.get(i).getId() == ObjectId.Player) {
@@ -136,7 +165,7 @@ private void tick() {
  private void render() {
 	 // to get our buffering
 	  BufferStrategy bs = this.getBufferStrategy(); // this refers to the canvas class btw
-	  //intiialize once since buffer gets called constantly
+	  //Initialize once since buffer gets called constantly
 	 
 	  if(bs == null) 
 	  { 

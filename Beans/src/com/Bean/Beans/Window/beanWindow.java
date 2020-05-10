@@ -1,3 +1,13 @@
+/// GENERAL CODE INFO //////////
+/* Code info:
+ * Authors : Abdirahman Abdi
+ *          :Dillon Zieglemann
+ *          :Bruce Nyakundi
+ *          :Ahmed Mohamoud
+ * Course : OOP programming
+ * Instructor: Zakaria Baani
+ * Due date: 05/10/2020
+ */
 package com.Bean.Beans.Window;
 
 import java.awt.Dimension;

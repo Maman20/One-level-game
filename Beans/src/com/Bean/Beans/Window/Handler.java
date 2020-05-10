@@ -45,20 +45,24 @@ public class Handler { //class to hold all our game objects to a list , updates 
 	}
 	
 	public void LoadImageLevel(BufferedImage image) {
-		int w = image.getWidth();
+		int w = image.getWidth(); //width of the image
 		int h = image.getHeight();
 		
 		for(int xx = 0; xx < h; xx++) {
 			for(int yy = 0; yy < w; yy++) {
 				int pixel = image.getRGB(xx, yy);
-						int red = (pixel >> 16) & 0xff;
-						int green = (pixel >> 8) & 0xff;
+						int red = (pixel >> 16) & 0xff; //bit operator
+						int green = (pixel >> 8) & 0xff; 
 						int blue = (pixel) & 0xff;
 						
 						
-						if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*32, yy*32, 0, ObjectId.Block));
+						//if we have white pixels then create a block object and pass in and int value to indecate teh index for the image pixel i.e 1
+						if(red == 255 && green == 255 && blue == 255) addObject(new Block(xx*32, yy*32, 0, ObjectId.Block));  //0 means dirt and 1 means grass
 						if(red == 128 && green == 128 && blue == 128) addObject(new Block(xx*32, yy*32, 1, ObjectId.Block));
+						//if blue pixel detected the create a player object
 						if(red == 0 && green == 0 && blue == 255) addObject(new Player(xx*32, yy*32, this, cam, ObjectId.Player));
+						
+						//if its a yellow pixel then create a level object
 						if(red == 255 && green == 255 && blue == 0) addObject(new Flag(xx*32, yy*32, ObjectId.Flag));
 
 			}
@@ -67,7 +71,7 @@ public class Handler { //class to hold all our game objects to a list , updates 
 		
 	public void switchLevel() {
 		clearLevel();
-		cam.setX(0);
+		cam.setX(0); //reset our camera
 		
 		switch(mainGame.LEVEL) { //switching btwn levels
 		case 1:
@@ -80,7 +84,7 @@ public class Handler { //class to hold all our game objects to a list , updates 
 		}
 	}
 	
-	public void clearLevel() {
+	public void clearLevel() { //clears the level by clearing the leemnts in the list
 		object.clear();
 	}
 	
